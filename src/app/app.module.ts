@@ -13,6 +13,8 @@ import {
   CreateEventComponent,
   CreateSessionComponent,
   SessionListComponent,
+  UpvoteComponent,
+  VoterService,
   DurationPipe,
 } from './events/index'
 
@@ -45,11 +47,13 @@ let jQuery = window['$']
     SessionListComponent,
     CollapsibleWellComponent,
     SimpleModalComponent,
+    UpvoteComponent,
     DurationPipe,
     ModalTriggerDirective,
   ],
   providers: [ 
     EventService,
+    VoterService,
     {
       provide: TOASTR_TOKEN,
       useValue:toastr
