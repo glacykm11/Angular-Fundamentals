@@ -28,6 +28,8 @@ export class SessionListComponent implements OnChanges{
         }else{
             this.voterService.addVoter(session, this.auth.currentUser.userName)
         }
+        if(this.sortBy === 'votes')
+        this.visibleSessions.sort(sortByVotesDesc)
     }
 
     userHasVoted(session:ISession){
@@ -42,8 +44,6 @@ export class SessionListComponent implements OnChanges{
                 return session.level.toLocaleLowerCase() === filter
             })
         }
-        if (this.sortBy === 'votes')
-            this.visibleSessions.sort(sortByVotesDesc)
     }
 }
 
