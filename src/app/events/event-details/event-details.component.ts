@@ -20,8 +20,8 @@ export class EventDetailsComponent {
     constructor(private eventService: EventService, private route: ActivatedRoute){}
 
     ngOnInit(){
-        this.route.params.forEach((params:Params) => {
-            this.event = this.eventService.getEvent(+params['id'])
+        this.route.data.forEach((data) => {
+            this.event = data['event']
             this.addMode = false
         })
     }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 import {
   EventsListComponent, 
@@ -9,7 +10,6 @@ import {
   EventService,
   EventsListResolver,
   EventDetailsComponent,
-  EventRouteActivator,
   CreateEventComponent,
   CreateSessionComponent,
   SessionListComponent,
@@ -17,6 +17,7 @@ import {
   VoterService,
   LocationValidator,
   DurationPipe,
+  EventsResolver,
 } from './events/index'
 
 import { EventsAppComponent } from './events-app.component';
@@ -35,6 +36,7 @@ let jQuery = window['$']
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   declarations: [
     EventsAppComponent,
@@ -55,6 +57,7 @@ let jQuery = window['$']
   ],
   providers: [ 
     EventService,
+    EventsResolver,
     VoterService,
     {
       provide: TOASTR_TOKEN,
@@ -63,11 +66,6 @@ let jQuery = window['$']
     {
       provide: JQ_TOKEN,
       useValue:jQuery
-    },
-    EventRouteActivator,
-    { 
-      provide: 'canDeactivateCreateEvent', 
-      useValue: checkDirtyState
     },
     EventsListResolver,
     AuthService,
